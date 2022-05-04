@@ -1,0 +1,76 @@
+:root{
+    --color3: #05b1b1;
+    --color4: #52339a;
+
+    --color1: #ffd700;
+    --color2: #f2f3f4;
+}
+header, footer, section{
+    padding: 0 0;
+}
+
+body{
+    background-image: url("backgrIMG.jpg");
+    background-attachment: fixed;
+    backdrop-filter: blur(4px);
+
+}
+
+section {padding: 30px 0;}
+
+header{padding: 0 0 0 0;/*  background-color: #ffd700;*/}
+
+.color1{
+    color: var(--color1);
+}
+.color2{
+    color: var(--color2);
+}
+
+header, nav{
+    background: #ffd700;
+    background: -moz-linear-gradient(left,  #ffd700 8%, #ffd700 73%, #ffd700 73%, #000000 100%);
+    background: -webkit-linear-gradient(left,  #ffd700 8%,#ffd700 73%,#ffd700 73%,#000000 100%);
+    background: linear-gradient(to right,  #ffd700 8%,#ffd700 73%,#ffd700 73%,#000000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd700', endColorstr='#000000',GradientType=1 );
+}
+
+
+.card-body a {text-decoration: none;}
+
+.bg1{
+    color: var(--color1);
+}
+.bg2{
+    color: var(--color2);
+}
+
+/*.about, body { background-color: #eee;}*/
+
+.about i { 
+    font-size: 25px;
+    color: var(--color1);
+}
+
+.form-group{ margin-top: 10px;}
+
+.carousel-item, .carousel-item img {height: 600px;}
+
+
+.circle-around{
+    margin: 0 auto 15px;
+    width: 70px;
+    height: 70px;
+    border: 3px solid var(--color2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.line{
+    width: 100px;
+    height: 3px;
+    background-color: var(--color1);
+    margin: 15px auto 30px;
+}

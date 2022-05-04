@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/fontello.css}">
+    <title>Document</title>
+</head>
+<body class="mt-0">
+<header>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/home}">AutoServ1ce</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/reviews}">Отзывы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/home#services}">Услуги</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated() and !hasAuthority('ADMIN')" class="nav-item">
+                            <a class="nav-link" th:href="@{/requests}">Мои заявки</a>
+                        </li>
+                        <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                            <a class="nav-link" th:href="@{/admin}">Заявки пользователей</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" sec:authorize="!isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="btn btn-warning" th:href="@{/auth/login}" role="button">Войти</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" sec:authorize="isAuthenticated()">
+                        <li sec:authentication="name" class="nav-item" style="font-size: 1.5em">
+                            Name
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/auth/logout}" method="POST">
+                                <button style="margin: 0 10px;" type="submit" class="btn btn-outline-success">
+                                    Выйти
+                                </button>
+                            </form>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section class="about">
+    <div class="container" style="margin-top: 60px;">
+        <div class="row">
+            <div class="col-12" style="margin-top: 60px;">
+                <h2 class="text-center text-uppercase color1 mb-5">Создание отзыва</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <form th:method="POST" action="/reviewform" th:object="${review}" id="myform">
+            <div class="form-group">
+                <label for="InputReview" class="color1">Напишите отзыв</label>
+                <textarea rows="10" cols="80" type="text" th:field="*{text}" class="form-control" form="myform" id="InputReview" placeholder="Здесь вы можете поделиться своими мыслями по проделанной работе" required>
+                </textarea>
+            </div>
+
+
+
+            <div class="d-flex justify-content-between align-items-end mt-2">
+                <button type="submit" class="btn btn-primary mt-3">Отправить</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
