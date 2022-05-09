@@ -20,15 +20,8 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    //private final static UserDetailsManager userDetailsManager = new JdbcUserDetailsManager();
-
 
     @GetMapping("/login")
     public String getLoginPage() {

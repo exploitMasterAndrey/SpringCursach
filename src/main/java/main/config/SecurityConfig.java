@@ -34,8 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/images/**", "/font/**").permitAll() // new
-                .antMatchers("/home", "/reviews", "/auth/registration", "/requestform", "/reviewform").permitAll()
+                .antMatchers("/css/**", "/js/**", "/images/**", "/font/**").permitAll()
+                .antMatchers("/home", "/reviews").permitAll()
+                .antMatchers("/requestform").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/reviewform").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/auth/registration").anonymous()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -55,12 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
-
-/*    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers("/static/css/**", "/static/font/**").anyRequest();
-    }*/
 
     @Bean
     protected PasswordEncoder passwordEncoder() {

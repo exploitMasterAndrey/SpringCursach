@@ -17,9 +17,6 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    /*@Autowired
-    private RequestRepository requestRepository;*/
-
     @Autowired
     private RequestService requestService;
 
@@ -28,9 +25,6 @@ public class HomeController {
 
     @Autowired
     private ReviewService reviewService;
-
-    /*@Autowired
-    private UserRepository userRepository;*/
 
     private Authentication authentication;
 
